@@ -14,8 +14,8 @@ dependencies:
   table_calendar                  : ^3.1.1      # https://pub.dev/packages/table_calendar
   cupertino_icons                 : ^1.0.6
 
-flutter_localizations:
-  sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 dependency_overrides:
   intl: ^0.19.0                                 # https://pub.dev/packages/intl
