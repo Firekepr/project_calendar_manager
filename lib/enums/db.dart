@@ -1,0 +1,4 @@
+enum TABLES {
+  user,
+  events,
+}
