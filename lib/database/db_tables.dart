@@ -16,6 +16,7 @@ class DBTables {
     description text not null default '',
     date text not null,
     favorite integer not null default 0,
+    user_id integer not null,
     event_order auto increment
   )
   ''';
