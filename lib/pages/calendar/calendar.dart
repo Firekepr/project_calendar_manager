@@ -121,8 +121,8 @@ class Calendar extends StatelessWidget {
       ),
 
       daysOfWeekStyle: DaysOfWeekStyle(
-        weekdayStyle: TextStyle(color: AppColors.black.color, fontSize: 16),
-        weekendStyle: TextStyle(color: AppColors.red.color, fontSize: 16),
+        weekdayStyle: TextStyle(color: AppColors.black.color, fontSize: 14),
+        weekendStyle: TextStyle(color: AppColors.red.color, fontSize: 14),
         // dowTextFormatter: (date, locale) => _getDayOfWeekText(date, locale),
       ),
     );
