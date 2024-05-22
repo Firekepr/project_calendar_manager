@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/pages/calendar/calendar.dart';
+import 'package:project_calendar_manager/pages/home/components/drawer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -35,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: const AppDrawer(),
       body: Calendar(
         selectedDay: selectedDay,
         onDaySelected: _onDayChange,
@@ -50,11 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _onDayChange(DateTime date1, DateTime date2) {
+  void _onDayChange(DateTime date1, DateTime date2) {
    setState(() => selectedDay = date1 );
   }
 
-  _onFormatChange(CalendarFormat format) {
+  void _onFormatChange(CalendarFormat format) {
     setState(() => currentFormat = format );
   }
 }
