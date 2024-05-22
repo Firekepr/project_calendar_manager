@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/pages/calendar/calendar.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -12,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
    DateTime selectedDay = DateTime.now();
+   CalendarFormat currentFormat = CalendarFormat.month;
 
   int _counter = 0;
 
@@ -36,6 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Calendar(
         selectedDay: selectedDay,
         onDaySelected: _onDayChange,
+        currentFormat: currentFormat,
+        onFormatChanged: _onFormatChange,
         onPageChanged: (date) => {},
       ),
       floatingActionButton: FloatingActionButton(
@@ -48,5 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _onDayChange(DateTime date1, DateTime date2) {
    setState(() => selectedDay = date1 );
+  }
+
+  _onFormatChange(CalendarFormat format) {
+    setState(() => currentFormat = format );
   }
 }

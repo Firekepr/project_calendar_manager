@@ -3,21 +3,28 @@ import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatelessWidget {
   final DateTime selectedDay;
+  final CalendarFormat currentFormat;
   final void Function(DateTime time1, DateTime time2) onDaySelected;
   final void Function(DateTime time) onPageChanged;
+  final void Function(CalendarFormat format) onFormatChanged;
 
   const Calendar({
     super.key,
     required this.selectedDay,
+    required this.currentFormat,
     required this.onDaySelected,
     required this.onPageChanged,
+    required this.onFormatChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    final availableCalendarFormats = { CalendarFormat.month: 'Mês', CalendarFormat.week: 'Sem' };
-    const currentFormat = CalendarFormat.month;
     final screenHeight = MediaQuery.of(context).size.height;
+    final availableCalendarFormats = {
+      CalendarFormat.month: 'Mês',
+      CalendarFormat.week: 'Sem',
+      CalendarFormat.twoWeeks: 'Duas sem',
+    };
 
     return TableCalendar(
       firstDay: DateTime.utc(2000, 01, 01),
@@ -29,6 +36,7 @@ class Calendar extends StatelessWidget {
       availableCalendarFormats: availableCalendarFormats,
       onDaySelected: onDaySelected,
       onPageChanged: onPageChanged,
+      onFormatChanged: onFormatChanged,
       availableGestures: AvailableGestures.all,
       daysOfWeekHeight: screenHeight * 0.022,
       rowHeight: screenHeight * 0.057,
