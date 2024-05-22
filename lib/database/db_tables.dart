@@ -15,6 +15,7 @@ class DBTables {
     id integer primary key auto increment,
     description text not null default '',
     date text not null,
+    color text not null 'fffffff',
     favorite integer not null default 0,
     user_id integer not null,
     event_order auto increment
