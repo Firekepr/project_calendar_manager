@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/pages/calendar/calendar.dart';
 import 'package:project_calendar_manager/pages/home/components/drawer.dart';
+import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,8 +14,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   DateTime selectedDay = DateTime.now();
-   CalendarFormat currentFormat = CalendarFormat.month;
+  final _service = CalendarS();
+
+  DateTime selectedDay = DateTime.now();
+  CalendarFormat currentFormat = CalendarFormat.month;
+  Map<DateTime, List<dynamic>> events = {};
+
+   @override
+  void initState() {
+     _getEvents();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         currentFormat: currentFormat,
         onFormatChanged: _onFormatChange,
         onPageChanged: (date) => {},
+        events: events,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -45,5 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onFormatChange(CalendarFormat format) {
     setState(() => currentFormat = format );
+  }
+
+  Future<void> _getEvents() async {
+     final result = await _service.getEvents(selectedDay);
+     setState(() => events = result);
   }
 }

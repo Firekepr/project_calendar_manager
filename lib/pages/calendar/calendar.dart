@@ -5,6 +5,7 @@ import 'package:project_calendar_manager/styles/colors/app_colors_extension.dart
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatelessWidget {
+  final Map<DateTime, List<dynamic>> events;
   final DateTime selectedDay;
   final CalendarFormat currentFormat;
   final void Function(DateTime time1, DateTime time2) onDaySelected;
@@ -13,6 +14,7 @@ class Calendar extends StatelessWidget {
 
   const Calendar({
     super.key,
+    required this.events,
     required this.selectedDay,
     required this.currentFormat,
     required this.onDaySelected,
@@ -131,7 +133,7 @@ class Calendar extends StatelessWidget {
   List<dynamic> _getEvents(DateTime date) {
     DateTime day = DateTime.parse(date.toString().substring(0, date.toString().length - 1));
 
-    return [];
+    return events[day] ?? [];
   }
 
   String _getDayOfWeekText(DateTime date, dynamic locale) {
