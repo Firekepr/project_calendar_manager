@@ -56,15 +56,7 @@ class DBApp {
     final db = await _get();
 
     try {
-      final sql = '''
-        SELECT $returned
-        FROM ${table.name} t1
-        $joins
-        ${where.isNotEmpty ? 'WHERE $where' : ''}
-        ${groupBy.isNotEmpty ? 'group by $groupBy' : ''}
-        ${orderBy.isNotEmpty ? 'order by $orderBy' : ''}
-        ${limit > 0 ? ' LIMIT $limit' : ''}        
-      ''';
+      final sql = "SELECT $returned FROM ${table.name} t1 $joins ${where.isNotEmpty ? 'WHERE $where' : ''} ${groupBy.isNotEmpty ? 'group by $groupBy' : ''} ${orderBy.isNotEmpty ? 'order by $orderBy' : ''} ${limit > 0 ? ' LIMIT $limit' : ''} ";
 
       if (Global.printSelectQuery) log('QUERY: $sql');
 
