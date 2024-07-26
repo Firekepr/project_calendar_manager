@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/database/classes/events.dart';
 import 'package:project_calendar_manager/database/db.dart';
 import 'package:project_calendar_manager/enums/db.dart';
+import 'package:project_calendar_manager/widget/new_event_dialog.dart';
 
 class CalendarS {
   final _db = DBApp.instance;
@@ -26,6 +28,13 @@ class CalendarS {
     };
 
     return result;
+  }
+
+  void newEvent(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) => const NewEventDialog(),
+    );
   }
 
   List<EventsC> _handleEvents(DateTime date, List<EventsC> events) {

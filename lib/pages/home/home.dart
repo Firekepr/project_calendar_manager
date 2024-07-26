@@ -16,6 +16,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _service = CalendarS();
 
+  Color pickerColor = Colors.red;
+
   DateTime selectedDay = DateTime.now();
   CalendarFormat currentFormat = CalendarFormat.month;
   Map<DateTime, List<dynamic>> events = {};
@@ -43,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         events: events,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _service.newEvent(context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
