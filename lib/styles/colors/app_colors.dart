@@ -1,5 +1,11 @@
 enum AppColors {
   red,
   black,
-  white
+  white,
+  whiteFade,
+  grey,
+  graphite,
+  transparent,
+  primary,
+  secondary,
 }
