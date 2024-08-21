@@ -136,8 +136,8 @@ class Calendar extends StatelessWidget {
             List<Color> itemColor = [];
 
             if (events.isNotEmpty) {
-              for (EventsC element in events) {
-                item.add(1);
+              for (EventsDots element in events) {
+                item.add(element.count);
                 itemColor.add(UtilsS.fromHex(element.color));
               }
             }
@@ -155,7 +155,7 @@ class Calendar extends StatelessWidget {
                   height: item.length > 3 ? 29 : 20,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    // border: Border.all(color: borderItemColor[index]),
+                    border: Border.all(color: AppColors.black.color),
                     color: itemColor[index],
                   ),
                   child: Text(
