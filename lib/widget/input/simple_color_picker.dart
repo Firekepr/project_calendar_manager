@@ -1,4 +1,5 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:project_calendar_manager/service/utils/utils.dart';
@@ -7,7 +8,7 @@ import 'package:project_calendar_manager/styles/colors/app_colors_extension.dart
 import 'package:project_calendar_manager/styles/font/font_size.dart';
 import 'package:project_calendar_manager/widget/simple.dart';
 
-class SimpleColorPicker extends StatelessWidget {
+class SimpleColorPicker extends StatefulWidget {
   final Color selectedColor;
   final String label;
   final void Function(Color) changeColor;
@@ -18,6 +19,31 @@ class SimpleColorPicker extends StatelessWidget {
     required this.label,
     required this.changeColor
   });
+
+  @override
+  State<SimpleColorPicker> createState() => _SimpleColorPickerState();
+}
+
+class _SimpleColorPickerState extends State<SimpleColorPicker> {
+  bool changePallet = false;
+
+  final pallet1 = [
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#bee4e7')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#9ddbf0')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#d3bedd')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#f4cfe1')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#f8c9d3')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#fbf6bc')),
+  ];
+
+  final pallet2 = [
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#bfd8d4')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#8fd5ed')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#dbc0e9')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#f8c9d3')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#f18caa')),
+    ColorTools.createPrimarySwatch(UtilsS.fromHex('#fee3b8')),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +62,20 @@ class SimpleColorPicker extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SimpleWidget.customText(
-            text: label,
-            color: AppColors.black,
-            size: FontSize.extraSmall,
-            bold: true,
+          GestureDetector(
+            onTap: () => setState(() => changePallet = !changePallet),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SimpleWidget.customText(
+                  text: widget.label,
+                  color: AppColors.black,
+                  size: FontSize.extraSmall,
+                  bold: true,
+                ),
+                const Icon(Icons.sync_rounded, size: 19.0),
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,16 +84,9 @@ class SimpleColorPicker extends StatelessWidget {
                 elevation: 2,
                 circleSize: 38,
                 shrinkWrap: true,
-                onColorChange: changeColor,
-                selectedColor: selectedColor,
-                colors: [
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#bee4e7')),
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#9ddbf0')),
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#d3bedd')),
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#f4cfe1')),
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#f8c9d3')),
-                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#fbf6bc')),
-                ],
+                onColorChange: widget.changeColor,
+                selectedColor: widget.selectedColor,
+                colors: changePallet ? pallet2 : pallet1,
               ),
             ],
           ),
