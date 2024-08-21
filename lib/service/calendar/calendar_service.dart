@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/database/classes/events.dart';
 import 'package:project_calendar_manager/database/db.dart';
 import 'package:project_calendar_manager/enums/db.dart';
+import 'package:project_calendar_manager/providers/provider_helper.dart';
 import 'package:project_calendar_manager/widget/new_event_dialog.dart';
 
 class CalendarS {
   final _db = DBApp.instance;
 
-  Future<Map<DateTime, List<EventsC>>> getEvents(DateTime date) async {
+  Future<void> getEvents() async {
     final query = await _db.dbSelect(table: TABLES.events);
 
     List<EventsC> events = [];
@@ -15,7 +16,7 @@ class CalendarS {
       events.add(EventsC.fromMap(map));
     }
 
-    if (events.isEmpty) return {};
+    if (events.isEmpty) return;
 
     List<DateTime> dates = [];
 
@@ -27,7 +28,7 @@ class CalendarS {
       for (var value in dates) value : _handleEvents(value, events)
     };
 
-    return result;
+    PHelper.getCalendarProvider(null).setEvents(result);
   }
 
   void newEvent(BuildContext context) async {
@@ -49,6 +50,7 @@ class CalendarS {
 
   Future<void> saveEvent(Map<String, dynamic> item, BuildContext context) async {
     await _db.dbInsert(table: TABLES.events, values: item);
+    await getEvents();
     if (context.mounted) Navigator.pop(context);
   }
 }

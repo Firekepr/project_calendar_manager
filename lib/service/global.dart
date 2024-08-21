@@ -7,4 +7,6 @@ class Global {
   static bool printInsertQuery = true;
   static bool printUpdateQuery = true;
   static bool printDeleteQuery = true;
+
+  static DateTime selectedDay = DateTime.now();
 }

@@ -2,4 +2,10 @@ import 'package:flutter/material.dart';
 
 class CalendarProvider extends ChangeNotifier {
 
+  Map<DateTime, List<dynamic>> _events = {};
+  Map<DateTime, List<dynamic>> get events => _events;
+  setEvents(Map<DateTime, List<dynamic>> newEvents, {bool silence = false}) {
+    _events = newEvents;
+    if (!silence) notifyListeners();
+  }
 }
