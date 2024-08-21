@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:project_calendar_manager/l10n/l10n.dart';
 import 'package:project_calendar_manager/pages/home/home.dart';
 import 'package:project_calendar_manager/service/context/ContextService.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project_calendar_manager/service/global.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,11 +19,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      supportedLocales: const [
-        Locale('pt', ''),
-        Locale('en', ''),
-      ],
+      locale: Global.currentLanguage,
+      supportedLocales: L10n.all,
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

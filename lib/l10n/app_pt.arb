@@ -1,0 +1,8 @@
+{
+    "language": "Português",
+    "hello": "Olá {username}",
+    "newEvent": "Novo evento",
+    "description": "Descrição",
+    "eventDate": "Data do evento",
+    "eventColor": "Cor do evento"
+}

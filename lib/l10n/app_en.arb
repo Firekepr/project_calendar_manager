@@ -1,0 +1,36 @@
+{
+    "language": "English",
+    "@language": {
+        "description": "The current Language"
+    },
+
+    "hello": "Hello {username}",
+    "@hello": {
+        "description": "A welcome message",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+
+    "newEvent": "New event",
+    "@newEvent": {
+        "description": "New event template"
+    },
+
+    "description": "Description",
+    "@description": {
+        "description": "A description template"
+    },
+
+    "eventDate": "Event date",
+    "@eventDate": {
+        "description": "A event date template"
+    },
+
+    "eventColor": "Event color",
+    "@eventColor": {
+        "description": "A event color template"
+    }
+}
