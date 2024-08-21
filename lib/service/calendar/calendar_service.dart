@@ -24,7 +24,7 @@ class CalendarS {
     }
 
     Map<DateTime, List<EventsC>> result = {
-      for (var value in dates) value : _handleEvents(date, events)
+      for (var value in dates) value : _handleEvents(value, events)
     };
 
     return result;
@@ -45,5 +45,10 @@ class CalendarS {
     }
 
     return dots;
+  }
+
+  Future<void> saveEvent(Map<String, dynamic> item, BuildContext context) async {
+    await _db.dbInsert(table: TABLES.events, values: item);
+    if (context.mounted) Navigator.pop(context);
   }
 }

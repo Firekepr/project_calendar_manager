@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
 import 'package:project_calendar_manager/styles/strings/app_strings.dart';
 import 'package:project_calendar_manager/widget/buttons/simple_text_button.dart';
@@ -16,12 +17,12 @@ class NewEventDialog extends StatefulWidget {
 }
 
 class _NewEventDialogState extends State<NewEventDialog> {
+  final _service = CalendarS();
   Color selectedColor = Colors.red;
 
   final _form = FormGroup({
     'description': FormControl<String>(value: null, validators: [Validators.required]),
     'date': FormControl<DateTime>(value: DateTime.now(), validators: [Validators.required]),
-    'color': FormControl<String>(value: '#ffffff', validators: [Validators.required]),
   });
 
   @override
@@ -67,7 +68,7 @@ class _NewEventDialogState extends State<NewEventDialog> {
 
             SimpleTextButton(
               label: 'Salvar',
-              onPressed: () => {},
+              onPressed: save,
               widthByPercent: true,
               width: 0.40,
               margin: const EdgeInsets.only(bottom: 8.0),
@@ -79,4 +80,15 @@ class _NewEventDialogState extends State<NewEventDialog> {
   }
 
   void changeColor(Color color) => setState(() => selectedColor = color);
+
+  Future<void> save() async {
+    final item = {
+      'description': _form.controls['description']!.value,
+      'date': _form.controls['date']!.value.toString().substring(0, 10),
+      'color': selectedColor.value.toRadixString(16),
+      'user_id': 1,
+    };
+
+    await _service.saveEvent(item, context);
+  }
 }
