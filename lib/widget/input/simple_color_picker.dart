@@ -1,5 +1,7 @@
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
+import 'package:project_calendar_manager/service/utils/utils.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors_extension.dart';
 import 'package:project_calendar_manager/styles/font/font_size.dart';
@@ -49,12 +51,13 @@ class SimpleColorPicker extends StatelessWidget {
                 shrinkWrap: true,
                 onColorChange: changeColor,
                 selectedColor: selectedColor,
-                colors: const [
-                  Colors.red,
-                  Colors.deepOrange,
-                  Colors.yellow,
-                  Colors.lightGreen,
-                  Colors.blue,
+                colors: [
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#bee4e7')),
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#9ddbf0')),
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#d3bedd')),
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#f4cfe1')),
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#f8c9d3')),
+                  ColorTools.createPrimarySwatch(UtilsS.fromHex('#fbf6bc')),
                 ],
               ),
             ],
