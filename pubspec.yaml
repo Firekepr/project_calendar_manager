@@ -17,6 +17,7 @@ dependencies:
   reactive_forms                  : ^17.0.0     # https://pub.dev/packages/reactive_forms
   sqflite                         : ^2.3.3+1    # https://pub.dev/packages/sqflite
   table_calendar                  : ^3.1.1      # https://pub.dev/packages/table_calendar
+  provider                        : ^6.1.2      # https://pub.dev/packages/provider
   cupertino_icons                 : ^1.0.6
 
   flutter_localizations:
