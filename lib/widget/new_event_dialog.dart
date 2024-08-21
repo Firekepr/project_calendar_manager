@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
-import 'package:project_calendar_manager/styles/strings/app_strings.dart';
 import 'package:project_calendar_manager/widget/buttons/simple_text_button.dart';
 import 'package:project_calendar_manager/widget/input/simple_color_picker.dart';
 import 'package:project_calendar_manager/widget/input/simple_date_picker.dart';
 import 'package:project_calendar_manager/widget/input/simple_text_field.dart';
 import 'package:project_calendar_manager/widget/page_header/page_header.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewEventDialog extends StatefulWidget {
   const NewEventDialog({super.key});
@@ -34,8 +34,8 @@ class _NewEventDialogState extends State<NewEventDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const PageHeader(
-              title: AppString.newEvent,
+            PageHeader(
+              title: AppLocalizations.of(context)!.newEvent,
               titleColor: AppColors.black,
               iconColor: AppColors.black,
             ),
@@ -44,23 +44,23 @@ class _NewEventDialogState extends State<NewEventDialog> {
               padding: const EdgeInsets.all(12.0),
               child: Column(
                 children: [
-                  const SimpleTextField(
+                  SimpleTextField(
                     formControlName: 'description',
-                    label: AppString.description,
-                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                    label: AppLocalizations.of(context)!.description,
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
                   ),
 
-                  const SpinCareFormDatePicker(
+                  SpinCareFormDatePicker(
                     formControlName: 'date',
-                    label: AppString.eventDate,
+                    label: AppLocalizations.of(context)!.eventDate,
                     width: double.infinity,
-                    margin: EdgeInsets.only(bottom: 12.0),
+                    margin: const EdgeInsets.only(bottom: 12.0),
                   ),
 
                   SimpleColorPicker(
                     changeColor: changeColor,
                     selectedColor: selectedColor,
-                    label: AppString.eventColor,
+                    label: AppLocalizations.of(context)!.eventColor,
                   ),
                 ],
               ),
