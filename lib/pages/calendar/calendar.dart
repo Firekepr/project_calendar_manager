@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:project_calendar_manager/database/classes/events.dart';
+import 'package:project_calendar_manager/service/utils/utils.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors_extension.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -127,6 +129,43 @@ class Calendar extends StatelessWidget {
         weekendStyle: TextStyle(color: AppColors.red.color, fontSize: 14),
         // dowTextFormatter: (date, locale) => _getDayOfWeekText(date, locale),
       ),
+
+      calendarBuilders: CalendarBuilders(
+          markerBuilder: (BuildContext context, DateTime date, List<dynamic> events) {
+            List<int> item = [];
+            List<Color> itemColor = [];
+
+            if (events.isNotEmpty) {
+              for (EventsC element in events) {
+                item.add(1);
+                itemColor.add(UtilsS.fromHex(element.color));
+              }
+            }
+
+            return ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: item.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(top: item.length > 3 ? 28.0 : 29),
+                  padding: item.length > 3 ? const EdgeInsets.only(bottom: 4) : const EdgeInsets.all(0.5),
+                  width: item.length > 3 ? 13 : 15,
+                  height: item.length > 3 ? 29 : 20,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    // border: Border.all(color: borderItemColor[index]),
+                    color: itemColor[index],
+                  ),
+                  child: Text(
+                    item[index].toString(),
+                    style: const TextStyle(color: Colors.black, fontSize: 11),
+                  ),
+                );
+              },
+            );
+          }),
     );
   }
 
