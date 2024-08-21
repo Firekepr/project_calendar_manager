@@ -32,5 +32,10 @@
     "eventColor": "Event color",
     "@eventColor": {
         "description": "A event color template"
+    },
+
+    "save": "Save",
+    "@save": {
+        "description": "A save template"
     }
 }

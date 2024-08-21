@@ -4,5 +4,6 @@
     "newEvent": "Novo evento",
     "description": "Descrição",
     "eventDate": "Data do evento",
-    "eventColor": "Cor do evento"
+    "eventColor": "Cor do evento",
+    "save": "Salvar"
 }

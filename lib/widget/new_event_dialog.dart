@@ -67,7 +67,7 @@ class _NewEventDialogState extends State<NewEventDialog> {
             ),
 
             SimpleTextButton(
-              label: 'Salvar',
+              label: AppLocalizations.of(context)!.save,
               onPressed: save,
               widthByPercent: true,
               width: 0.40,
