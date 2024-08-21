@@ -37,3 +37,19 @@ class EventsC {
     'event_order': event_order,
   };
 }
+
+
+class EventsDots {
+  int count;
+  String color;
+
+  EventsDots({
+    required this.count,
+    required this.color,
+  });
+
+  factory EventsDots.fromMap(Map<String, dynamic> map) => EventsDots(
+    count: map['count'],
+    color: map['color'],
+  );
+}

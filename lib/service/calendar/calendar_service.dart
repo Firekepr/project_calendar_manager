@@ -3,13 +3,22 @@ import 'package:project_calendar_manager/database/classes/events.dart';
 import 'package:project_calendar_manager/database/db.dart';
 import 'package:project_calendar_manager/enums/db.dart';
 import 'package:project_calendar_manager/providers/provider_helper.dart';
+import 'package:project_calendar_manager/service/global.dart';
 import 'package:project_calendar_manager/widget/new_event_dialog.dart';
 
 class CalendarS {
   final _db = DBApp.instance;
 
   Future<void> getEvents() async {
-    final query = await _db.dbSelect(table: TABLES.events);
+    final dt = Global.selectedDay;
+    final lastDay = DateTime(dt.year, dt.month + 1, 0).day;
+    final date = dt.toString().substring(0, 7);
+
+    final query = await _db.dbSelect(
+      table: TABLES.events,
+      where: ''' date(t1.date) between date('$date-01') and date('$date-$lastDay') ''',
+      orderBy: 'date(t1.date), t1.color'
+    );
 
     List<EventsC> events = [];
     for (Map<String, dynamic> map in query) {
@@ -24,7 +33,7 @@ class CalendarS {
       if (!dates.contains(event.date)) dates.add(event.date);
     }
 
-    Map<DateTime, List<EventsC>> result = {
+    Map<DateTime, List<EventsDots>> result = {
       for (var value in dates) value : _handleEvents(value, events)
     };
 
@@ -38,11 +47,19 @@ class CalendarS {
     );
   }
 
-  List<EventsC> _handleEvents(DateTime date, List<EventsC> events) {
-    List<EventsC> dots = [];
+  List<EventsDots> _handleEvents(DateTime date, List<EventsC> events) {
+    List<EventsDots> dots = [];
 
     for (EventsC event in events) {
-      if (date == event.date) dots.add(event);
+      if (date == event.date) {
+        final idx = dots.indexWhere((e) => e.color == event.color);
+
+        if (idx == -1) {
+          dots.add(EventsDots(count: 1, color: event.color));
+        } else {
+          dots[idx].count = dots[idx].count + 1;
+        }
+      }
     }
 
     return dots;
