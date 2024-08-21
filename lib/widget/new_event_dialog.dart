@@ -21,7 +21,7 @@ class _NewEventDialogState extends State<NewEventDialog> {
   Color selectedColor = Colors.red;
 
   final _form = FormGroup({
-    'description': FormControl<String>(value: null, validators: [Validators.required]),
+    'description': FormControl<String>(value: 'Novo evento', validators: [Validators.required]),
     'date': FormControl<DateTime>(value: DateTime.now(), validators: [Validators.required]),
   });
 
@@ -72,6 +72,7 @@ class _NewEventDialogState extends State<NewEventDialog> {
               widthByPercent: true,
               width: 0.40,
               margin: const EdgeInsets.only(bottom: 8.0),
+              isFormButton: true,
             ),
           ],
         ),
