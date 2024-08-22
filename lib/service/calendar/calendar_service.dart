@@ -9,7 +9,7 @@ import 'package:project_calendar_manager/widget/new_event_dialog.dart';
 class CalendarS {
   final _db = DBApp.instance;
 
-  Future<void> getEvents() async {
+  Future<void> getMonthEvents() async {
     final dt = Global.selectedDay;
     final lastDay = DateTime(dt.year, dt.month + 1, 0).day;
     final date = dt.toString().substring(0, 7);
@@ -66,8 +66,19 @@ class CalendarS {
   }
 
   Future<void> saveEvent(Map<String, dynamic> item, BuildContext context) async {
+    final query = await _db.dbSelect(
+      table: TABLES.events,
+      returned: 'max(t1.event_order) as qt',
+      where: ''' date(date) = date('${Global.selectedDay}') ''',
+      orderBy: 't1.color',
+      limit: 1,
+    );
+
+    item['event_order'] = query.isEmpty ? 1 : (query[0]['qt'] + 1);
+
     await _db.dbInsert(table: TABLES.events, values: item);
-    await getEvents();
+    await getMonthEvents();
+
     if (context.mounted) Navigator.pop(context);
   }
 }
