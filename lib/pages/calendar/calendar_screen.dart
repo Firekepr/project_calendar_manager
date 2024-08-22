@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:project_calendar_manager/pages/calendar/calendar_screen.dart';
 import 'package:project_calendar_manager/pages/calendar/components/calendar.dart';
-import 'package:project_calendar_manager/pages/home/components/drawer.dart';
 import 'package:project_calendar_manager/providers/calendar_provider.dart';
 import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
 import 'package:project_calendar_manager/service/global.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class CalendarScreen extends StatefulWidget {
+  const CalendarScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CalendarScreen> createState() => _CalendarScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CalendarScreenState extends State<CalendarScreen> {
   final _service = CalendarS();
 
   Color pickerColor = Colors.red;
 
   CalendarFormat currentFormat = CalendarFormat.month;
 
-   @override
+  @override
   void initState() {
-     _getEvents();
+    _getEvents();
     super.initState();
   }
 
@@ -34,25 +30,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Consumer<CalendarProvider>(
       builder: (context, CalendarProvider p, Widget? body) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text(widget.title),
-          ),
-          drawer: const AppDrawer(),
-          body: const CalendarScreen(),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => _service.newEvent(context),
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
-        );
-      },
+       return Column(
+         children: [
+           Calendar(
+             selectedDay: Global.selectedDay,
+             onDaySelected: _onDayChange,
+             currentFormat: currentFormat,
+             onFormatChanged: _onFormatChange,
+             onPageChanged: (date) => {},
+             events: p.events,
+           )
+         ],
+       );
+      }
     );
   }
 
   void _onDayChange(DateTime date1, DateTime date2) {
-   setState(() => Global.selectedDay = date1 );
+    setState(() => Global.selectedDay = date1 );
   }
 
   void _onFormatChange(CalendarFormat format) {
@@ -60,6 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _getEvents() async {
-     await _service.getEvents();
+    await _service.getEvents();
   }
 }
