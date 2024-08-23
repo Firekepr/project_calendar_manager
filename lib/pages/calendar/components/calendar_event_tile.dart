@@ -31,6 +31,14 @@ class CalendarEventTile extends StatelessWidget {
         tileColor: UtilsS.fromHex(item.color),
         title: Text(item.description),
         contentPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+        trailing: SimpleWidget.customContainer(
+          hide: item.favorite,
+          hideWidget: const SizedBox(width: 16.0),
+          child: IconButton(
+            icon: Icon(Icons.delete_forever, color: AppColors.black.color),
+            onPressed: onTrash,
+          ),
+        ),
         leading: IconButton(
           onPressed: onFavorite,
           color: AppColors.yellow.color,

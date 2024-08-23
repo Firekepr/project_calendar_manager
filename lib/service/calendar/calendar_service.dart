@@ -16,7 +16,7 @@ class CalendarS {
 
     final query = await _db.dbSelect(
       table: TABLES.events,
-      where: ''' date(t1.date) between date('$date-01') and date('$date-$lastDay') ''',
+      where: ''' date(t1.date) between date('$date-01') and date('$date-$lastDay') AND trash = 0''',
       orderBy: 'date(t1.date), t1.color'
     );
 

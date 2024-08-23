@@ -7,7 +7,6 @@ import 'package:project_calendar_manager/service/events/events_service.dart';
 import 'package:project_calendar_manager/service/global.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors_extension.dart';
-import 'package:project_calendar_manager/widget/simple.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -54,9 +53,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
                itemCount: p.eventsDay.length,
                shrinkWrap: true,
                itemBuilder: (context, idx) {
+                 final item = p.eventsDay[idx];
+
                  return CalendarEventTile(
                    item: p.eventsDay[idx],
-                   onFavorite: () => _eventS.onFavorite(p.eventsDay[idx]),
+                   onFavorite: () => _eventS.onFavorite(item),
+                   onTrash: () => _eventS.onTrash(context, item),
                  );
                },
              ),

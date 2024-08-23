@@ -28,14 +28,20 @@ class EventsC {
     event_order: map['event_order'],
   );
 
-  Map<String, dynamic> toMap() => {
-    'id': id,
-    'description': description,
-    'color': color,
-    'date': date.toString().substring(0, 10),
-    'favorite': UtilsS.boolToBinary(favorite),
-    'event_order': event_order,
-  };
+  Map<String, dynamic> toMap({bool trash = false}) {
+    Map<String, dynamic> map = {
+      'id': id,
+      'description': description,
+      'color': color,
+      'date': date.toString().substring(0, 10),
+      'favorite': UtilsS.boolToBinary(favorite),
+      'event_order': event_order,
+    };
+
+    if (trash) map['trash'] =UtilsS.boolToBinary(trash);
+
+    return map;
+  }
 }
 
 
