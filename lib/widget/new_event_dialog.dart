@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
+import 'package:project_calendar_manager/service/utils/utils.dart';
 import 'package:project_calendar_manager/styles/colors/app_colors.dart';
 import 'package:project_calendar_manager/widget/buttons/simple_text_button.dart';
 import 'package:project_calendar_manager/widget/input/simple_color_picker.dart';
@@ -18,7 +19,7 @@ class NewEventDialog extends StatefulWidget {
 
 class _NewEventDialogState extends State<NewEventDialog> {
   final _service = CalendarS();
-  Color selectedColor = Colors.red;
+  Color selectedColor = UtilsS.fromHex('#bee4e7');
 
   final _form = FormGroup({
     'description': FormControl<String>(value: 'Novo evento', validators: [Validators.required]),
@@ -88,6 +89,7 @@ class _NewEventDialogState extends State<NewEventDialog> {
       'date': _form.controls['date']!.value.toString().substring(0, 10),
       'color': selectedColor.value.toRadixString(16),
       'user_id': 1,
+      'favorite': 0,
     };
 
     await _service.saveEvent(item, context);
