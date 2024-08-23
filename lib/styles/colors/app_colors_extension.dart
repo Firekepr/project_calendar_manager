@@ -24,6 +24,12 @@ extension AppGetColors on AppColors {
       case AppColors.transparent:
         return Colors.transparent;
 
+      case AppColors.yellow:
+        return Colors.yellow;
+
+      case AppColors.yellowDark:
+        return Colors.yellow.shade600;
+
       case AppColors.graphite:
         return const Color.fromRGBO(51, 51, 51, 0.8);
 

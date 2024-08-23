@@ -6,6 +6,8 @@ enum AppColors {
   grey,
   graphite,
   transparent,
+  yellow,
+  yellowDark,
   primary,
   secondary,
 }
