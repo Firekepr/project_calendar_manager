@@ -5,5 +5,10 @@
     "description": "Descrição",
     "eventDate": "Data do evento",
     "eventColor": "Cor do evento",
-    "save": "Salvar"
+    "save": "Salvar",
+    "attention": "Atenção",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "toTrash": "Lixo!",
+    "toTrashDescription": "Você tem certeza que deseja mover o evento para a lixeira?"
 }

@@ -16,26 +16,51 @@
 
     "newEvent": "New event",
     "@newEvent": {
-        "description": "New event template"
+        "description": "New 'event' template"
     },
 
     "description": "Description",
     "@description": {
-        "description": "A description template"
+        "description": "A 'description' template"
     },
 
     "eventDate": "Event date",
     "@eventDate": {
-        "description": "A event date template"
+        "description": "A 'event date' template"
     },
 
     "eventColor": "Event color",
     "@eventColor": {
-        "description": "A event color template"
+        "description": "A 'event color' template"
     },
 
     "save": "Save",
     "@save": {
-        "description": "A save template"
+        "description": "A 'save' template"
+    },
+
+    "attention": "Attention",
+    "@attention": {
+        "description": "A 'attention' template"
+    },
+
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "A 'cancel' template"
+    },
+
+    "confirm": "Confirm",
+    "@confirm": {
+        "description": "A 'confirm' template"
+    },
+
+    "toTrash": "Trash!",
+    "@toTrash": {
+        "description": "A 'Trash' template"
+    },
+
+    "toTrashDescription": "Are you sure which event you want to move to the trash?",
+    "@toTrashDescription": {
+        "description": "Dialog trash description"
     }
 }
