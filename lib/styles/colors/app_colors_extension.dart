@@ -9,6 +9,9 @@ extension AppGetColors on AppColors {
       case AppColors.red:
         return Colors.red;
 
+      case AppColors.redDark:
+        return Colors.red.shade900;
+
       case AppColors.black:
         return Colors.black;
 
