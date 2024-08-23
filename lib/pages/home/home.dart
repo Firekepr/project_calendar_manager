@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_calendar_manager/pages/calendar/calendar_screen.dart';
-import 'package:project_calendar_manager/pages/calendar/components/calendar.dart';
 import 'package:project_calendar_manager/pages/home/components/drawer.dart';
 import 'package:project_calendar_manager/providers/calendar_provider.dart';
 import 'package:project_calendar_manager/service/calendar/calendar_service.dart';
-import 'package:project_calendar_manager/service/global.dart';
 import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -19,16 +16,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _service = CalendarS();
-
-  Color pickerColor = Colors.red;
-
-  CalendarFormat currentFormat = CalendarFormat.month;
-
-   @override
-  void initState() {
-     _getEvents();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +36,5 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
-  }
-
-  void _onDayChange(DateTime date1, DateTime date2) {
-   setState(() => Global.selectedDay = date1 );
-  }
-
-  void _onFormatChange(CalendarFormat format) {
-    setState(() => currentFormat = format );
-  }
-
-  Future<void> _getEvents() async {
-     await _service.getEvents();
   }
 }
