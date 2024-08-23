@@ -40,6 +40,21 @@ class CalendarS {
     PHelper.getCalendarProvider(null).setEvents(result);
   }
 
+  Future<void> getDayEvents() async {
+    final query = await _db.dbSelect(
+        table: TABLES.events,
+        where: ''' date = date('${Global.selectedDay}') ''',
+        orderBy: 't1.favorite desc, t1.event_order, t1.color'
+    );
+
+    List<EventsC> events = [];
+    for (Map<String, dynamic> map in query) {
+      events.add(EventsC.fromMap(map));
+    }
+
+    PHelper.getCalendarProvider(null).setEventsDay(events);
+  }
+
   void newEvent(BuildContext context) async {
     return await showDialog(
         context: context,
@@ -74,10 +89,12 @@ class CalendarS {
       limit: 1,
     );
 
-    item['event_order'] = query.isEmpty ? 1 : (query[0]['qt'] + 1);
+    item['event_order'] = (query.isEmpty || query[0]['qt'] == null) ? 1 : (query[0]['qt'] + 1);
 
     await _db.dbInsert(table: TABLES.events, values: item);
     await getMonthEvents();
+
+    if (item['date'] == Global.selectedDay.toString().substring(0, 10)) await getDayEvents();
 
     if (context.mounted) Navigator.pop(context);
   }
