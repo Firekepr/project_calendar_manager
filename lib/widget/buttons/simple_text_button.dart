@@ -22,7 +22,7 @@ class SimpleTextButton extends StatelessWidget {
   final double? fontSize;
   final double height;
   final double width;
-  final double? borderWidth;
+  final double borderWidth;
   final double? radius;
   final double elevation;
   final EdgeInsetsGeometry? labelPadding;
@@ -50,7 +50,7 @@ class SimpleTextButton extends StatelessWidget {
     this.fontSize,
     this.height = 30,
     this.width = double.infinity,
-    this.borderWidth,
+    this.borderWidth = 0.0,
     this.labelPadding,
     this.margin = EdgeInsets.zero,
     this.radius,
@@ -85,6 +85,7 @@ class SimpleTextButton extends StatelessWidget {
           borderRadius: radius ?? 5,
           bgColor: _getBackGroundColor(),
           bdColor: _getBorderColor(),
+          borderWidth: borderWidth,
           child: loading
               ? const LinearProgressIndicator()
               : Padding(
