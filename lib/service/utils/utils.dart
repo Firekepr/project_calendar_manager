@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class UtilsS {
 
   static bool binaryToBool(int value) => value == 1;
+  static int boolToBinary(bool value) => value ? 1 : 0;
 
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();

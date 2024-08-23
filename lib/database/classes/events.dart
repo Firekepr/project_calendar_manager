@@ -25,15 +25,15 @@ class EventsC {
     color: map['color'],
     date: DateTime.parse(map['date']),
     favorite: UtilsS.binaryToBool(map['favorite']),
-    event_order: map['event_order'] ?? 0,
+    event_order: map['event_order'],
   );
 
   Map<String, dynamic> toMap() => {
     'id': id,
     'description': description,
     'color': color,
-    'date': date,
-    'favorite': favorite,
+    'date': date.toString().substring(0, 10),
+    'favorite': UtilsS.boolToBinary(favorite),
     'event_order': event_order,
   };
 }
