@@ -17,8 +17,9 @@ class DBTables {
     date text not null,
     color text not null default '#ffffff',
     favorite integer not null default 0,
+    trash integer not null default 0,
     user_id integer not null,
-    event_order auto increment
+    event_order integer
   )
   ''';
 }

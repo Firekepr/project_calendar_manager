@@ -43,7 +43,7 @@ class CalendarS {
   Future<void> getDayEvents() async {
     final query = await _db.dbSelect(
         table: TABLES.events,
-        where: ''' date = date('${Global.selectedDay}') ''',
+        where: ''' date = date('${Global.selectedDay}') AND trash = 0''',
         orderBy: 't1.favorite desc, t1.event_order, t1.color'
     );
 
